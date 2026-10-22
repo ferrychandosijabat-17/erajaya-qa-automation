@@ -1,0 +1,17 @@
+{
+  "valid_user": {
+    "username": "John Doe",
+    "password": "ThisIsNotAPassword"
+  },
+  "invalid_user": {
+    "username": "InvalidUser",
+    "password": "WrongPassword",
+    "expected_error": "Login failed! Please ensure the username and password are valid."
+  },
+  "appointment_data": {
+    "facility": "Hongkong CURA Healthcare Center",
+    "hospital_readmission": true,
+    "program": "Medicaid",
+    "comment": "Regular health checkup"
+  }
+}
