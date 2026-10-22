@@ -34,7 +34,13 @@ def driver(request):
         except Exception as e:
             logger.error(f"Failed to capture screenshot on test failure: {e}")
 
-    logger.info(f"=== Tearing down driver for: {request.node.name} ===")
+    logger.info(f"=== Tearing down driver & cleaning screen for: {request.node.name} ===")
+    try:
+        driver_instance.terminate_app(Config.APP_PACKAGE)
+        logger.info(f"Successfully terminated {Config.APP_PACKAGE} and cleared screen.")
+    except Exception as e:
+        logger.warning(f"Error terminating app during teardown: {e}")
+
     try:
         driver_instance.quit()
     except Exception as e:
