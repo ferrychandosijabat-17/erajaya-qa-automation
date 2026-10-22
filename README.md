@@ -90,6 +90,11 @@ start reports/report.html
 
 Automated mobile test suite for the **Eraspace** Android application utilizing **Appium** (UiAutomator2 driver) and **Page Object Model (POM)**.
 
+### Covered Scenarios
+- **Scenario 1: Login**
+  - **TC 1.1**: Login with invalid data *(verifies input values and error message)*
+  - **TC 1.2**: Login with valid data *(verifies successful login and redirection to Homepage)*
+
 ### Quick Start (Mobile)
 ```bash
 # Navigate to mobile directory
