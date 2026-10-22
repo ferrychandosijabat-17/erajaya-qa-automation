@@ -56,17 +56,12 @@ class TestLoginScenario:
         # Expected Result 1 & 2:
         # 1. Login gagal
         # 2. Tampil pesan error
-        is_error_displayed = login_page.is_login_failed()
-        assert (
-            is_error_displayed
-        ), "Expected error message or login failure state, but none found."
+        is_failed = login_page.is_login_failed()
+        assert is_failed, "Expected error message or login failure state, but none found."
 
         if login_page.is_error_message_displayed():
             error_message = login_page.get_error_message()
             logger.info(f"Detected error message: '{error_message}'")
-        assert (
-            login_page.is_login_failed()
-        ), "Expected login to fail, but user did not remain on login flow."
 
         logger.info(
             "✓ Step 3 Passed: 1. Login gagal, 2. Tampil pesan error berhasil divalidasi."

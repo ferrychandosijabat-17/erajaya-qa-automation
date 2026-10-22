@@ -20,8 +20,12 @@ class DriverFactory:
                 options=options,
             )
             driver.implicitly_wait(Config.IMPLICIT_WAIT)
-            logger.info("Appium driver session initialized successfully. Waiting for splash screen...")
-            time.sleep(4)
+            logger.info("Appium driver session initialized successfully. Bringing app to foreground...")
+            try:
+                driver.activate_app(Config.APP_PACKAGE)
+            except Exception:
+                pass
+            time.sleep(3)
             return driver
         except Exception as e:
             logger.error(f"Failed to initialize Appium driver session: {e}")

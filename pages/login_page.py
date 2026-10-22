@@ -6,10 +6,10 @@ from utils.logger import logger
 class LoginPage(BasePage):
     """Page Object for Eraspace Mobile App Login Screen."""
 
-    # Locators (supports multiple standard resource IDs & fallback XPaths for Eraspace)
+    # Locators
     FIELD_USERNAME = (
         AppiumBy.XPATH,
-        "//android.widget.EditText[contains(@resource-id, 'edtPhoneNumber') or contains(@resource-id, 'email') or contains(@resource-id, 'username') or contains(@hint, 'email') or contains(@hint, 'handphone') or @index='0']",
+        "//android.widget.EditText[contains(@resource-id, 'edtPhoneNumber') or contains(@resource-id, 'email') or contains(@resource-id, 'username') or contains(@hint, 'email') or contains(@hint, 'handphone')]",
     )
     FIELD_PASSWORD = (
         AppiumBy.XPATH,
@@ -100,11 +100,7 @@ class LoginPage(BasePage):
 
         if self.is_displayed(self.BTN_MASUK_HOMEPAGE, timeout=5):
             logger.info("Clicking Masuk button on Account/Home screen...")
-            try:
-                self.driver.tap([(540, 360)])
-                logger.info("Tapped Masuk/Daftar area on Akun screen.")
-            except Exception:
-                self.click(self.BTN_MASUK_HOMEPAGE)
+            self.click(self.BTN_MASUK_HOMEPAGE)
 
         self.find_element(self.FIELD_USERNAME, timeout=15)
 
