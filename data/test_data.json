@@ -1,0 +1,24 @@
+{
+  "test_cases": {
+    "tc_1_1_invalid_login": {
+      "description": "Login with invalid data",
+      "username": "invalid_user@erajaya-test.com",
+      "password": "WrongPassword123!",
+      "expected_error_message": "Email atau kata sandi tidak sesuai"
+    },
+    "tc_1_2_valid_login": {
+      "description": "Login with valid data",
+      "username": "qa.automation.erajaya@gmail.com",
+      "password": "SecurePassword123!",
+      "expected_account_name": "QA Tester Erajaya",
+      "expected_menu_items": [
+        "Beranda",
+        "Kategori",
+        "Promo",
+        "Keranjang",
+        "Akun"
+      ],
+      "expected_point_indicator": "Poin"
+    }
+  }
+}

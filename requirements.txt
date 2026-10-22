@@ -1,0 +1,6 @@
+Appium-Python-Client>=4.0.0
+pytest>=8.0.0
+pytest-html>=4.1.0
+pytest-metadata>=3.1.0
+python-dotenv>=1.0.1
+pydantic>=2.0.0

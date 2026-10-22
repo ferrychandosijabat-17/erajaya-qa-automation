@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Pytest / Test reports
+.pytest_cache/
+reports/*.html
+reports/assets/
+screenshots/*.png
+!reports/.gitkeep
+!screenshots/.gitkeep
+
+# Environment variables & secrets
+.env
+*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Appium & Logs
+appium.log
+*.log
