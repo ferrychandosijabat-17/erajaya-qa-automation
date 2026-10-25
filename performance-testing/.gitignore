@@ -1,0 +1,48 @@
+# ==========================================
+# JMeter Logs, Backups & Result Artifacts
+# ==========================================
+*.jtl
+*.log
+jmeter.log*
+*.jmx.bak
+
+# JMeter report output folders (can be re-generated anytime)
+reports/*/dashboard/
+reports/*/*.jtl
+reports/*/*.csv
+reports/register_users.jtl
+
+# Keep directory structures intact
+!reports/**/.gitkeep
+
+# ==========================================
+# Scratch / Helper Scripts
+# ==========================================
+scripts/test_delete.ps1
+scripts/test_*.ps1
+test_*.ps1
+push_to_main_repo.ps1
+MAIN_REPO_README.md
+
+# ==========================================
+# Python Cache & Environments
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# ==========================================
+# IDE & Operating System Files
+# ==========================================
+.vscode/
+.idea/
+*.suo
+*.user
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+._*

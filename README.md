@@ -1,6 +1,6 @@
 # 🚀 Erajaya QA Automation Technical Assessment
 
-Repository containing the complete Test Automation solution for **Erajaya QA Assessment**, covering manual test case design, Web UI automation, and Android Mobile automation.
+Repository containing the complete Test Automation solution for **Erajaya QA Assessment**, covering manual test case design, Web UI automation, Android Mobile automation, and API Performance & Load testing.
 
 ---
 
@@ -11,6 +11,7 @@ Repository containing the complete Test Automation solution for **Erajaya QA Ass
 | **Soal 1: Test Case Design** | COD Payment Method Feature (C2C E-Commerce) | Manual Test Scenarios (Positive & Negative) | [`Soal 1 – Test Case (Positive & Negative).md`](./Soal%201%20–%20Test%20Case%20(Positive%20&%20Negative).md) |
 | **Soal 2: Web Automation** | CURA Healthcare Service (`katalon-demo-cura.herokuapp.com`) | Python 3.12, Playwright, Pytest, Page Object Model (POM) | [`web-automation/`](./web-automation/) |
 | **Soal 3: Mobile Automation** | Eraspace Android Application (`com.eraspace.app`) | Python 3.12, Appium (UiAutomator2), Pytest, Page Object Model (POM) | [`mobile-automation/`](./mobile-automation/) |
+| **Soal 4: Performance Testing** | DemoQA Book Store Application (`demoqa.com`) | Apache JMeter 5.6+, Non-GUI CLI, HTML Dashboard Reports | [`performance-testing/`](./performance-testing/) |
 
 ---
 
@@ -43,8 +44,21 @@ erajaya-qa-automation/
 │   ├── .env.example                             # Environment variables template
 │   └── README.md                                # Detailed web documentation & setup guide
 │
+├── performance-testing/                         # Performance & Load Testing Suite (Apache JMeter)
+│   ├── data/                                    # Parameterized datasets (users.csv, books.csv)
+│   ├── docs/                                    # Technical justification & rationale (thread group)
+│   ├── reports/                                 # Report directories (baseline, load_10, load_50, load_100)
+│   ├── scripts/                                 # Modular JMX plans & pre-registration helpers
+│   │   ├── scenarios/                           # Standalone scenario test plans
+│   │   ├── BookStore_Master_TestPlan.jmx        # Master Test Plan (Modular: Test Fragments)
+│   │   ├── register_users.ps1                   # Pre-registration via PowerShell (Windows native)
+│   │   ├── register_users.py                    # Pre-registration via Python
+│   │   └── register_users.jmx                   # Pre-registration via JMeter
+│   ├── .gitignore                               # Performance test artifact exclusions
+│   └── README.md                                # Detailed performance testing documentation
+│
 ├── Soal 1 – Test Case (Positive & Negative).md  # Comprehensive test cases for COD feature
-├── .gitignore                                   # Global repository ignore rules
+├── .gitignore                                    # Global repository ignore rules
 └── README.md                                    # Root repository documentation (this file)
 ```
 
@@ -123,12 +137,45 @@ Documented manual test cases covering Positive and Negative scenarios for the Ca
 
 ---
 
+## ⚡ 4. Performance Testing (Apache JMeter)
+
+Performance and load testing suite for **DemoQA Book Store** REST API & web services (`https://demoqa.com`), engineered using **Apache JMeter 5.6+** following professional *Performance Engineering* standards.
+
+### Covered Test Matrix
+1. **Baseline Test**: 1 User, 5 Iterations (Validating script, assertions & establishing clean baseline response time).
+2. **Load Test (Small)**: 10 Users, Ramp-up 20s (2s/user), Duration 300s (5 min).
+3. **Load Test (Medium)**: 50 Users, Ramp-up 50s (1s/user), Duration 600s (10 min).
+4. **Load Test (Peak)**: 100 Users, Ramp-up 100s (1s/user), Duration 600s (10 min).
+5. **Ramp-Up / Stress Test**: 100 Users, Aggressive Ramp-up 60s, Duration 300s (5 min).
+6. **Soak Test (Endurance)**: 25 Users (25% peak), Ramp-up 60s, Duration 1800s (30 min).
+
+### Quick Start (Performance Testing)
+```bash
+# Navigate to performance-testing directory
+cd performance-testing
+
+# 1. Pre-register 100 virtual users (Choose one):
+.\scripts\register_users.ps1
+# or: python scripts/register_users.py
+# or: jmeter -n -t scripts/register_users.jmx -l reports/register_users.jtl
+
+# 2. Run Baseline Test via CLI (Non-GUI Mode) with HTML Dashboard:
+jmeter -n -t scripts/scenarios/01_Baseline_1User.jmx -l reports/baseline/results.jtl -e -o reports/baseline/dashboard/
+
+# 3. Run Master Test Plan (Load Test 10 Users):
+jmeter -n -t scripts/BookStore_Master_TestPlan.jmx -l reports/load_10/results.jtl -e -o reports/load_10/dashboard/
+```
+👉 *For complete details, see [performance-testing/README.md](./performance-testing/README.md).*
+
+---
+
 ## ⚙️ Tech Stack & Design Patterns
 
 - **Language**: Python 3.12
 - **Testing Framework**: Pytest
 - **Web Engine**: Playwright Python
 - **Mobile Engine**: Appium Python Client (UiAutomator2)
-- **Architecture**: Page Object Model (POM)
-- **Reporting**: Pytest-HTML (with failure screenshots)
-- **Data Handling**: Data-driven JSON configuration
+- **Performance Engine**: Apache JMeter 5.6+
+- **Architecture**: Page Object Model (POM), Modular JMeter Test Plan (Test Fragments & Module Controllers)
+- **Reporting**: Pytest-HTML, JMeter HTML Dashboard
+- **Data Handling**: Data-driven JSON & CSV configuration
