@@ -22,6 +22,7 @@ scripts/test_delete.ps1
 scripts/test_*.ps1
 test_*.ps1
 push_to_main_repo.ps1
+run_baseline_test.ps1
 MAIN_REPO_README.md
 
 # ==========================================
